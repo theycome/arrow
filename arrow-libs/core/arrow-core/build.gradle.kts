@@ -3,6 +3,14 @@ import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 plugins {
   id("arrow.kotlin")
   alias(libs.plugins.kotlin.jsPlainObjects)
+  id(libs.plugins.spotless.get().pluginId)
+}
+
+spotless {
+  kotlin {
+    target("**/*.kt")
+    //ktfmt()
+  }
 }
 
 @OptIn(ExperimentalKotlinGradlePluginApi::class)

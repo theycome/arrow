@@ -1,5 +1,13 @@
 plugins {
   id("arrow.kotlin")
+  id(libs.plugins.spotless.get().pluginId)
+}
+
+spotless {
+  kotlin {
+    target("**/*.kt")
+    //ktfmt()
+  }
 }
 
 kotlin {

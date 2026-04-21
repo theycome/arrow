@@ -12,6 +12,7 @@ import org.jetbrains.kotlin.gradle.dsl.abi.AbiValidationExtension
 import org.jetbrains.kotlin.gradle.dsl.abi.AbiValidationMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.abi.AbiValidationVariantSpec
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.net.URI
 import java.time.Duration
 
@@ -20,6 +21,12 @@ repositories {
   providers.gradleProperty("kotlin_repo_url").orNull?.also { maven(it) }
   google()
   maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+  compilerOptions {
+    freeCompilerArgs.add("-Xdebug")
+  }
 }
 
 group = property("projects.group").toString()
